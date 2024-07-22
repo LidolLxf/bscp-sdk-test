@@ -43,7 +43,7 @@ setup(
         "dev": extras_dev_require,
     },
     zip_safe=True,
-    version="0.0.3",
+    version="0.0.4",
     description="The Python SDK for blueking bscp project.",
     long_description=readme,
     long_description_content_type="text/markdown",
