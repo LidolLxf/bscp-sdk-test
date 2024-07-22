@@ -13,7 +13,7 @@
 #
 # We undertake not to change the open source license (MIT license) applicable
 # to the current version of the project delivered to anyone in the future.
-import setuptools
+from setuptools import setup, find_packages
 
 about = {}
 # with open("pyproject.toml") as f:
@@ -35,9 +35,9 @@ extras_dev_require = [
     "mypy>=0.910",
 ]
 
-setuptools.setup(
+setup(
     name="bscp-sdk-test",
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
     install_requires=requires,
     extras_require={
         "dev": extras_dev_require,
