@@ -1,9 +1,8 @@
 name: publish to pypi
 
-# on:
-#   release:
-#     types: [published]
-on: [push]
+on:
+  release:
+    types: [published]
 
 jobs:
   publish:
@@ -21,14 +20,10 @@ jobs:
       - name: install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip install wheel setuptools
-        
+          pip install poetry
+
       - name: build and publish
-        env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
           pip uninstall bscp-sdk-test -y
-          python3 setup.py sdist bdist_wheel
-          python3 -m pip install twine
-          python3 -m twine upload --skip-existing dist/*
+          poetry build
+          poetry publish --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }}
